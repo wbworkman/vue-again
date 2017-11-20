@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click='click'>按钮</button>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script>
+        //get和post请求
+        var vm = new Vue({
+            el: '#app',
+            data : function () {
+                return {
+
+                }
+            },
+            //vscode有一个很好的插件可以模拟请求 json-server
+            //第二步 配置package.json文件
+            //第三步 调用当前
+            methods: {
+                click: function () {
+                    // axios.get(' http://localhost:3000/user').then(function (res) {
+                    //     console.log(res);
+                    // }).catch(function (err) {
+                    //     console.log(err);
+                    // })
+                    axios.get(' http://localhost:3000/user',{
+                        params : {
+                            age: 20
+                        }
+                    }).then(function (res) {
+                        console.log(res);
+                    }).catch(function (err) {
+                        console.log(err);
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

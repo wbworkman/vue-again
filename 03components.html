@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 这里的内容将会被下面的template的内容替换掉 -->
+        <hello></hello>
+        <!-- 单闭合标签也可以使用但是双闭合标签不能写在单闭合标签下面否则将会失效不能显示内容 -->
+        <!-- <hello/> -->
+        <!-- <mycomponent></mycomponent> -->
+        <!-- 字母大写是标签形式的写法 -->
+        <my-component></my-component>
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        //写在vm是例外的是公有组件
+        // Vue.component('mycomponent',{ 
+        //     template:'<h1>公有组件的template</h1>'
+        // })
+        Vue.component('myComponent',{//这里如果mycomponent中c是大写 
+            data: function () {
+                return {//data数据里的内容是作用在公有组件里的template里的内容的
+                    name: '公有组件'
+                }
+            },
+            template:'<h1>大写时公有组件的template---{{name}}</h1>'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data:function () {
+                return {
+                    //data这里的数据是作用在组件中template中的
+                    msg: '组件'
+                }
+            },
+            components: {//这里用来定义各个私有组件 定义组件有两个参数
+                //参数一: 组价的名称 参数二: 组件的内容 声明的组件可以当标签一样使用
+                'hello': {//这里的内容将会替换掉上面的标签
+                    template: '<h1>这是template</h1>'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

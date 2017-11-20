@@ -1,0 +1,6 @@
+{
+    "user": [
+        {"name":"xiaoli","age": 20},
+        {"name": "xiaohu","age": 21}
+    ]
+}
